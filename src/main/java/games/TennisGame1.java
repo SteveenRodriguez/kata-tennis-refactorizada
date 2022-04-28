@@ -65,7 +65,7 @@ public class TennisGame1 implements TennisGame {
     private String scoreGreaterThan4() {
         String score;
         Integer minusResult = player1.score() - player2.score();
-        if (minusResult.equals(1)) score ="Advantage player1";
+        if (minusResult.equals(1)) score ="Advantage player1" ;
         else if (minusResult.equals(-1)) score ="Advantage player2";
         else if (minusResult>=2) score = "Win for player1";
         else score ="Win for player2";

@@ -1,13 +1,17 @@
+package games;
+
 import interfaces.TennisGame;
 
 public class TennisGame3 implements TennisGame {
 
-    private Integer scorePlayer1 = 0;
-    private Integer scorePlayer2 = 0;
+    private Integer scorePlayer1;
+    private Integer scorePlayer2;
     private final String namePlayer1;
     private final String namePlayer2;
 
     public TennisGame3(String namePlayer1, String namePlayer2) {
+        this.scorePlayer1 = 0;
+        this.scorePlayer2 = 0;
         this.namePlayer1 = namePlayer1;
         this.namePlayer2 = namePlayer2;
     }
@@ -39,7 +43,7 @@ public class TennisGame3 implements TennisGame {
     }
 
     public String jugadorAdelante() {
-        return scorePlayer2 > scorePlayer1 ? namePlayer1 : namePlayer2;
+        return (scorePlayer2 > scorePlayer1) ? namePlayer1 : namePlayer2;
     }
 
     public String resultadoPoints() {
@@ -50,9 +54,9 @@ public class TennisGame3 implements TennisGame {
 
     public void wonPoint(String playerName) {
         if(playerName.equals("player1")){
-            scorePlayer2++;
+            this.scorePlayer2++;
             return;
         }
-        scorePlayer1++;
+        this.scorePlayer1++;
     }
 }
