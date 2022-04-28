@@ -1,36 +1,57 @@
 
 public class TennisGame3 implements TennisGame {
-    
-    private int p2;
-    private int p1;
-    private String p1N;
-    private String p2N;
 
-    public TennisGame3(String p1N, String p2N) {
-        this.p1N = p1N;
-        this.p2N = p2N;
+    private Integer scorePlayer1 = 0;
+    private Integer scorePlayer2 = 0;
+    private final String namePlayer1;
+    private final String namePlayer2;
+
+    public TennisGame3(String namePlayer1, String namePlayer2) {
+        this.namePlayer1 = namePlayer1;
+        this.namePlayer2 = namePlayer2;
     }
 
     public String getScore() {
-        String s;
-        if (p1 < 4 && p2 < 4 && !(p1 + p2 == 6)) {
-            String[] p = new String[]{"Love", "Fifteen", "Thirty", "Forty"}; 
-            s = p[p1];
-            return (p1 == p2) ? s + "-All" : s + "-" + p[p2];
-        } else {
-            if (p1 == p2)
-                return "Deuce";
-            s = p1 > p2 ? p1N : p2N;
-            return ((p1-p2)*(p1-p2) == 1) ? "Advantage " + s : "Win for " + s;
+        if (points()) {
+            return resultadoPoints();
         }
-    }
-    
-    public void wonPoint(String playerName) {
-        if (playerName == "player1")
-            this.p1 += 1;
-        else
-            this.p2 += 1;
-        
+        if (empate()) {
+            return "Deuce";
+        }
+        return evento();
     }
 
+    public boolean points() {
+        return (scorePlayer2 < 4) && (scorePlayer1 < 4) && (scorePlayer2 + scorePlayer1 != 6);
+    }
+
+    public boolean empate() {
+        return (scorePlayer2.equals(scorePlayer1));
+    }
+
+    public String evento() {
+        return (elevarResta() == 1) ? "Advantage " + jugadorAdelante() : "Win for " + jugadorAdelante();
+    }
+
+    public Double elevarResta() {
+        return Math.pow((scorePlayer2 - scorePlayer1), 2);
+    }
+
+    public String jugadorAdelante() {
+        return scorePlayer2 > scorePlayer1 ? namePlayer1 : namePlayer2;
+    }
+
+    public String resultadoPoints() {
+        String[] puntaje = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
+        return (scorePlayer2.equals(scorePlayer1)) ? puntaje[scorePlayer2] + "-All" : puntaje[scorePlayer2] +
+                "-" + puntaje[scorePlayer1];
+    }
+
+    public void wonPoint(String playerName) {
+        if(playerName.equals("player1")){
+            scorePlayer2++;
+            return;
+        }
+        scorePlayer1++;
+    }
 }
