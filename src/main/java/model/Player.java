@@ -1,10 +1,9 @@
+package model;
+
 public class Player {
 
     private Integer score;
-    private String playerName;
-
-    public Player() {
-    }
+    private final String playerName;
 
     public Player(String playerName) {
         this.score = 0;
@@ -19,13 +18,9 @@ public class Player {
         this.score += score;
     }
 
-    public String playerName() {
-        return playerName;
-    }
-
     @Override
     public String toString() {
-        return "Player{" +
+        return "model.Player{" +
                 "score=" + score +
                 ", playerName='" + playerName + '\'' +
                 '}';

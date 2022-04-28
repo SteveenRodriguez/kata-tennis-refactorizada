@@ -1,3 +1,8 @@
+package games;
+
+import interfaces.TennisGame;
+import model.Player;
+
 import java.util.Objects;
 
 public class TennisGame1 implements TennisGame {
@@ -50,7 +55,7 @@ public class TennisGame1 implements TennisGame {
                 case 1 -> scoreBuilder.append("Fifteen");
                 case 2 -> scoreBuilder.append("Thirty");
                 case 3 -> scoreBuilder.append("Forty");
-                default -> scoreBuilder.append("");
+                default -> scoreBuilder.append(' ');
             }
         }
         score = scoreBuilder.toString();
